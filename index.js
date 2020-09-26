@@ -45,6 +45,17 @@ const server = http.createServer((req, res)=>{
     res.end("this is the OVERVIEW");
   } else if (pathName === '/product') {
     res.end("This is the PRODUCT");
+  } else if (pathName === '/api') {
+
+    // read the file (https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080930?start=173#notes)
+    fs.readFile(`${__dirname}/dev-data/data.json`,'utf-8', (err, data) => { // __dirname is meaning the current file located
+      const productData = JSON.parse(data);
+      // console.log(productData);
+      res.writeHead(200, {
+        "Content-type": "application/json"  // https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080930?start=525#notes
+      });
+      res.end(data);
+    });
   } else {
     res.writeHead(404, {
       "Content-type": "text/html",
