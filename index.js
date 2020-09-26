@@ -1,9 +1,9 @@
 const fs = require('fs'); // get the file stream module from NPM
-const http = require("http");
+const http = require("http"); // for create server
+const url = require("url"); // for rounting
 
 /*******************************************/
 /*File*/
-
 
 // Blocking, synchronous way
 // const textIn = fs.readFileSync("./txt/input.txt", "utf-8");
@@ -38,8 +38,20 @@ const http = require("http");
 
 // Create server
 const server = http.createServer((req, res)=>{
-  console.log(req);
-  res.end("Hello from the server!");
+  // console.log(req.url);
+  const pathName = req.url;
+
+  if(pathName === '/' || pathName === '/overview') {
+    res.end("this is the OVERVIEW");
+  } else if (pathName === '/product') {
+    res.end("This is the PRODUCT");
+  } else {
+    res.writeHead(404, {
+      "Content-type": "text/html",
+      "my-own-cmk-header": 'hello world'
+    }); // https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080928?start=540#notes
+    res.end("<h1>Page Not Found!</h1>")
+  }
 });
 
 // listen the local host at port 8000
