@@ -63,6 +63,10 @@ const dataObj = JSON.parse(data); // data object (can be loop)
 
 // Create server & run every each of request
 const server = http.createServer((req, res)=>{
+
+  // https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080942?start=108#notes
+  console.log(req.url);
+  console.log(url.parse(req.url, true));
   const pathName = req.url;
 
   // overview page
