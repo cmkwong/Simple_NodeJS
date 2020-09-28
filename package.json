@@ -1,0 +1,19 @@
+{
+  "name": "node-farm",
+  "version": "1.0.0",
+  "description": "Learning nodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmkwong/Simple_NodeJS.git"
+  },
+  "author": "Chris Cheung",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cmkwong/Simple_NodeJS/issues"
+  },
+  "homepage": "https://github.com/cmkwong/Simple_NodeJS#readme"
+}
