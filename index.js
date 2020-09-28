@@ -1,7 +1,8 @@
 const fs = require('fs'); // get the file stream module from NPM
 const http = require("http"); // for create server
 const url = require("url"); // for rounting
-
+//own module
+const replaceTemplate = require("./modules/replaceTemplate");
 /*******************************************/
 /*File*/
 
@@ -35,23 +36,6 @@ const url = require("url"); // for rounting
 
 /*******************************************/
 /*Server*/
-
-const replaceTemplate = (temp, product) => {
-  // regular expression: https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/learn/lecture/15080938?start=486#notes
-  let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName); // variable defined
-  output = output.replace(/{%IMAGE%}/g, product.image);
-  output = output.replace(/{%PRICE%}/g, product.price);
-  output = output.replace(/{%FROM%}/g, product.from);
-  output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-  output = output.replace(/{%QUANTITY%}/g, product.quantity);
-  output = output.replace(/{%DESCRIPTION%}/g, product.description);
-  output = output.replace(/{%ID%}/g, product.id);
-
-  if (!product.organic) {
-    output = output.replace(/{%NOT_ORGANIC%}/g, "not-organic");
-  }
-  return output;
-}
 
 // only execute once
 const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`,'utf-8');
