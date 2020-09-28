@@ -1,6 +1,9 @@
 const fs = require('fs'); // get the file stream module from NPM
 const http = require("http"); // for create server
 const url = require("url"); // for rounting
+
+// third party module
+const slugify = require('slugify');
 //own module
 const replaceTemplate = require("./modules/replaceTemplate");
 /*******************************************/
@@ -44,6 +47,10 @@ const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`,'ut
 
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`,'utf-8');
 const dataObj = JSON.parse(data); // data object (can be loop)
+
+const slugs = dataObj.map(el => slugify(el.productName, {lower: true}));
+console.log(slugs);
+// console.log(slugify('Fresh Avocados', {lower: true}));
 
 // Create server & run every each of request
 const server = http.createServer((req, res)=>{
